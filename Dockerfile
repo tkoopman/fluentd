@@ -9,10 +9,11 @@ RUN apk add --update --virtual .build-deps \
  && sudo gem install \
         fluent-plugin-elasticsearch \
         fluent-plugin-rewrite-tag-filter \
-        fluent-plugin-mqtt-io \
  && sudo gem sources --clear-all \
  && apk del .build-deps \
  && rm -rf /var/cache/apk/* \
            /home/fluent/.gem/ruby/2.3.0/cache/*.gem
+
+COPY fluent.conf /fluentd/etc/
 
 USER fluent
