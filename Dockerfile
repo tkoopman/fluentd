@@ -11,10 +11,9 @@ RUN apk add --update --virtual .build-deps \
         fluent-plugin-rewrite-tag-filter \
  && sudo gem sources --clear-all \
  && apk del .build-deps \
- && apk add tzdata su-exec \
+ && apk add tzdata \
  && rm -rf /var/cache/apk/* \
-           /home/fluent/.gem/ruby/2.3.0/cache/*.gem \
- && sed -i '/#!\/bin\/sh/a su-exec ln -snf \/usr\/share\/zoneinfo\/$TZ \/etc\/localtime && su-exec echo $TZ > \/etc\/timezone' /bin/entrypoint.sh
+           /home/fluent/.gem/ruby/2.3.0/cache/*.gem
 
 COPY fluent.conf /fluentd/etc/
 ENV TZ=Etc/UTC
