@@ -11,9 +11,11 @@ RUN apk add --update --virtual .build-deps \
         fluent-plugin-rewrite-tag-filter \
  && sudo gem sources --clear-all \
  && apk del .build-deps \
+ && apk add tzdata
  && rm -rf /var/cache/apk/* \
            /home/fluent/.gem/ruby/2.3.0/cache/*.gem
 
 COPY fluent.conf /fluentd/etc/
+ENV TZ=Etc/UTC
 
 USER fluent
