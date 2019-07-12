@@ -14,6 +14,7 @@ RUN apk add --update --virtual .build-deps \
  && apk add tzdata
  && rm -rf /var/cache/apk/* \
            /home/fluent/.gem/ruby/2.3.0/cache/*.gem
+ && sed -i '/#!\/bin\/sh/a ln -snf \/usr\/share\/zoneinfo\/$TZ \/etc\/localtime && echo $TZ > \/etc\/timezone' /bin/entrypoint.sh
 
 COPY fluent.conf /fluentd/etc/
 ENV TZ=Etc/UTC
