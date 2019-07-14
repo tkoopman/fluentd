@@ -9,6 +9,7 @@ RUN apk add --update --virtual .build-deps \
  && sudo gem install \
         fluent-plugin-elasticsearch \
         fluent-plugin-rewrite-tag-filter \
+        fluent-plugin-record-modifier \
  && sudo gem sources --clear-all \
  && apk del .build-deps \
  && apk add tzdata \
